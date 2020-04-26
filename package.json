@@ -26,6 +26,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start": "concurrently \"BROWSER=none npm run-script start-react\" \"wait-on http://localhost:3000 && electron .\"",
+    "w-start": "concurrently \"npm run-script start-react\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "preelectron-pack": "npm run-script build",
     "electron-pack": "build -mw"

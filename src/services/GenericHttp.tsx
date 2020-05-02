@@ -16,19 +16,28 @@ class GenericService {
      * @param resource 
      */
     static async getQuery(resource: string) {
+        
         try {
             let response = null
             if (resource != null) {
-             response = await fetch(_local_const.path + resource ,{
-                method: _local_const.get,
-                headers: {
-                    Accept: _local_const.headers.accept,
-                    "Authorization": "Basic YWRtaW46c2VjcmV0"
-                  },
-                redirect: 'follow'
-              })
+                response = await fetch(_local_const.path + resource, {
+                    method: _local_const.get,
+                    headers: {
+                            Accept: _local_const.headers.accept
+                        },
+                        redirect: 'follow'
+                    })
+                    .then(res => res.json())
+                    .then(
+                        (result) => {
+                            console.log("result --------> ", result);
+                        },
+                        (error) => {
+                            console.log("error --------> ", error);
+                        });
             }
             return response;
+
         } catch (error) {
             console.log(error, _local_const.debug);
         }

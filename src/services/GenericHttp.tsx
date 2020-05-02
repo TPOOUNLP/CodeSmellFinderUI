@@ -11,6 +11,10 @@ const _local_const = {
 
 class GenericService {
 
+    /**
+     * 
+     * @param resource 
+     */
     static async getQuery(resource: string) {
         try {
             let response = null
@@ -29,6 +33,11 @@ class GenericService {
         }
     }
 
+    /**
+     * 
+     * @param resource 
+     * @param params 
+     */
     static async postQuery(resource: string, params: any) {
         try {
             let response = null

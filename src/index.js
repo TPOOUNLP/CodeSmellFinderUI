@@ -50,8 +50,8 @@ class App extends React.Component {
     getContent() {
         AstService.getAstToPath("/").then((result) => {
             console.log(result)
-            if (result) {
-                 this.setState({content: result});
+            if (result && !!result.text) {
+                 this.setState({content: result.text});
             }
         });
     }

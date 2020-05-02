@@ -1,10 +1,7 @@
 import React from "react";
 
 class FileContainerItem extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
+   
     render() {
         return (
             <li class="list-group-item" key={this.props.index}>

@@ -4,9 +4,6 @@ import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 class SideBar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     /**
      * 

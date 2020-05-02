@@ -27,17 +27,10 @@ class GenericService {
                         },
                         redirect: 'follow'
                     })
-                    .then(res => res.json())
-                    .then(
-                        (result) => {
-                            console.log("result --------> ", result);
-                        },
-                        (error) => {
-                            console.log("error --------> ", error);
-                        });
-            }
-            return response;
-
+                }
+            
+           let data = (!!response)? await response.json() : null
+           return data
         } catch (error) {
             console.log(error, _local_const.debug);
         }

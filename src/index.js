@@ -71,10 +71,10 @@ class App extends React.Component {
                     <div style={_localStyles.fileInput}>
                         <FileInput uploadFile={(event) => this.uploadFile(event)}/>
                     </div>
-                    <div class="shadow p-3 mb-5 bg-white rounded" style={_localStyles.pathContainer} >
+                    <div className="shadow p-3 mb-5 bg-white rounded" style={_localStyles.pathContainer} >
                         <b style={{color: "black"}}>Directorio: {pathDirectory}</b>
                     </div>
-                    <div style={_localStyles.filesContainer} class="shadow p-3 mb-5 bg-white rounded">
+                    <div style={_localStyles.filesContainer} className="shadow p-3 mb-5 bg-white rounded">
                         <FilesContainer files={this.state.files} />
                     </div>
                     <div style={_localStyles.filesContainer}>

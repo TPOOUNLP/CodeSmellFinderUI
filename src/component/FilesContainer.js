@@ -17,7 +17,7 @@ class FilesContainer extends React.Component {
     render() {
         return (
             <div>
-                <ul class="list-group">
+                <ul className="list-group">
                     <FlatList list={(!!this.props.files)? this.props.files : []} renderItem={this.renderItem.bind(this)} />
                 </ul>
             </div>

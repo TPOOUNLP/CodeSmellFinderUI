@@ -23,10 +23,9 @@ class GenericService {
                 method: _local_const.get,
                 headers: {
                     Accept: _local_const.headers.accept,
-                   // "Content-Type": _local_const.headers.content_Type,
+                    "Authorization": "Basic YWRtaW46c2VjcmV0"
                   },
-                redirect: 'follow',
-                mode: 'no-cors'
+                redirect: 'follow'
               })
             }
             return response;

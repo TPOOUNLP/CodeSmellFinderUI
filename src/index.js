@@ -61,7 +61,7 @@ class App extends React.Component {
     }
 
     render() {
-        let pathDirectory = (!!this.state.files && this.state.files != [] && !!this.state.files[0])? this.state.files[0].path : null 
+        let pathDirectory = (!!this.state.files && this.state.files !== [] && !!this.state.files[0])? this.state.files[0].path : null 
         return (
             <div>
                 <div style={{position: "fixed", width: "10%" , height: "100%", zIndex: 10}}>

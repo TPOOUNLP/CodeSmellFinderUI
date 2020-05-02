@@ -23,8 +23,10 @@ class GenericService {
                 method: _local_const.get,
                 headers: {
                     Accept: _local_const.headers.accept,
-                    "Content-Type:": _local_const.headers.content_Type
-                }
+                   // "Content-Type": _local_const.headers.content_Type,
+                  },
+                redirect: 'follow',
+                mode: 'no-cors'
               })
             }
             return response;

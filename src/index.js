@@ -47,10 +47,12 @@ class App extends React.Component {
         }
     }
     
-    componentWillMount() {
+    getContent() {
         AstService.getAstToPath("/").then((result) => {
             console.log(result)
-            this.setState({content: result});
+            if (result) {
+                 this.setState({content: result});
+            }
         });
     }
 
@@ -74,6 +76,12 @@ class App extends React.Component {
                     </div>
                     <div style={_localStyles.filesContainer} class="shadow p-3 mb-5 bg-white rounded">
                         <FilesContainer files={this.state.files} />
+                    </div>
+                    <div style={_localStyles.filesContainer}>
+                        <button onClick={this.getContent.bind(this)}>Test</button>
+                    </div>
+                    <div style={_localStyles.filesContainer}>
+                        <p>content: {this.state.content}</p>
                     </div>
                 </div>
             </div>

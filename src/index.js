@@ -60,8 +60,19 @@ class App extends React.Component {
         this.setState({ files: event.target.files });
     }
 
+     removeLastDirectoryPartOf(path, direcory){      
+        let newPath = path.split('/')
+        let last = newPath.pop()
+        while (last != direcory) {
+            last = newPath.pop();
+        };
+        newPath.push(last)
+        return(newPath.join('/'));
+    }
+
     render() {
-        let pathDirectory = (!!this.state.files && this.state.files !== [] && !!this.state.files[0])? this.state.files[0].path : null 
+        let pathDirectory = (!!this.state.files && this.state.files !== [] && !!this.state.files[0])? 
+        this.removeLastDirectoryPartOf(this.state.files[0].path, this.state.files[0].webkitRelativePath.split("/")[0]) : null 
         return (
             <div>
                 <div style={{position: "fixed", width: "10%" , height: "100%", zIndex: 10}}>

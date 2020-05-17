@@ -8,6 +8,7 @@ import FileInput from "./component/FileInput";
 import FilesContainer from "./component/FilesContainer";
 import Filter from "./component/Filter";
 import Spinner from "./component/Spinner";
+import AstService from "./services/AstService";
 
 const _localStyles = {
     sidebar: {
@@ -96,13 +97,33 @@ class App extends React.Component {
         return success; 
     }
 
-    sendData() {
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+    async sendData() {
         if (this.chechData()) {
-            //make call to pharo
             this.setState({
-                showSpinner: !this.state.showSpinner,
-                currentMessageButton: (this.state.currentMessageButton == this.button) ? this.buttonLoading : this.button
+                showSpinner: true,
+                currentMessageButton: this.buttonLoading
             });
+            let data = {
+                directory: this.pathDirectory,
+                filters: this.filters
+            }
+            await this.sleep(4000);
+            
+            AstService.postAstToPath("/detect", data).then((result) => {
+                console.log(result)
+                if (result ) {
+                    this.setState({
+                        showSpinner: false,
+                        currentMessageButton:  this.button,
+                        content: result
+                    });
+                }
+            });
+            
         }
     }
 
@@ -162,7 +183,7 @@ class App extends React.Component {
                         </div>
 
                         <div style={_localStyles.resultContainer}>
-                            <h6>Resultado total:</h6>
+                             <h6>Resultado total: {JSON.stringify(this.state.content)}</h6>
                         </div>
                     </div>
                 </div>

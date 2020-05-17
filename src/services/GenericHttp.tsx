@@ -45,19 +45,16 @@ class GenericService {
         try {
             let response = null
             if (resource != null && params != null) {
-             response = await fetch(_local_const.path + resource,{
+             response = await fetch(_local_const.path + resource + "?" + "directory=" + params.directory + "&filters=" + JSON.stringify(params.filters),{
                 method: _local_const.post,
                 headers: {
-                  Accept: _local_const.headers.accept,
-                  "Content-Type": _local_const.headers.content_Type,
+                    Accept: _local_const.headers.accept
                 },
-                body: JSON.stringify({ 
-                    nombre: params.nombre,
-                    email: params.email
-                })
+                redirect: 'follow'
               })
             }
-            return response;
+        let data = (!!response)? JSON.stringify(await response.json()) : null
+        return data
         } catch (error) {
             console.log(error, _local_const.debug);
         }

@@ -12,6 +12,16 @@ class AstService {
     return response
   }
 
+  /**
+   * 
+   * @param path 
+   */
+  async postAstToPath(path: string, params: any) {
+    let response = await GenericService.postQuery(path, params);
+    console.log("obteniendo ast ...")
+    return response
+  }
+
 }
 
 export default new AstService();

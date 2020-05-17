@@ -11,25 +11,19 @@ export default class Filter extends React.Component {
       super();
       this.getDetectors();
       this.mock = true;
-      this.detectors = [
-        { title: "CSDetectorIdentifierTooLong" },
-        { title: "CSDetectorRepeatedMethodBody" },
-        { title: "CSDetectorTooManyLinesInMethod" },
-        { title: "CSDetectorTooManyMethodParameters" },
-        { title: "CSDetectorTooManyMethods" }
-      ];
+      this.state= {
+        detectors: []
+    }
   }
   
 
   getDetectors() {
-    if (!this.mock) {
-    AstService.getAstToPath("/getDetectors").then((result) => {
+    AstService.getAstToPath("/detectors").then((result) => {
         console.log(result)
-        if (result && !!result.OrderedCollection) {
-             this.setState({content: result});
+        if (result) {
+             this.setState({detectors: result});
         }
     });
-    }
   }
 
   
@@ -41,7 +35,7 @@ export default class Filter extends React.Component {
       <Autocomplete
         multiple
         id="tags-outlined"
-        options={this.detectors}
+        options={this.state.detectors}
         classes={{
           listbox: 'listbox',
           inputRoot: 'listbox'

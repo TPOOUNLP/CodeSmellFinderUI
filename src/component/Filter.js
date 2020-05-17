@@ -1,4 +1,5 @@
 /* eslint-disable no-use-before-define */
+import "../styles/style.css"
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
@@ -31,6 +32,8 @@ export default class Filter extends React.Component {
     }
   }
 
+  
+
   render() {
   return (
      
@@ -39,8 +42,14 @@ export default class Filter extends React.Component {
         multiple
         id="tags-outlined"
         options={this.detectors}
+        classes={{
+          listbox: 'listbox',
+          inputRoot: 'listbox'
+        }} 
         getOptionLabel={(option) => option.title}
-        defaultValue={[this.detectors[0]]}
+        onChange={(event, value, reason) =>  {
+          this.props.onChangeFilter(event, value, reason)
+        }}
         filterSelectedOptions
         renderInput={(params) => (
           <TextField

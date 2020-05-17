@@ -1,0 +1,32 @@
+
+  
+  * {
+    box-sizing: border-box;
+    color:#ffff !important;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+    font-size: 13px !important;
+  }
+  
+  .bg-image {
+    background-image: url("../assets/fondo.png");
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 0; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.listbox {
+  background-color: rgba(83,164,81,1);
+  color: "#000000" !important;
+}
+  
+.sombra {
+  -webkit-box-shadow: -6px 14px 20px -1px rgba(207,72,74,0.75);
+  -moz-box-shadow: -6px 14px 20px -1px rgba(207,72,74,0.75);
+  box-shadow: -6px 14px 20px -1px rgba(207,72,74,0.75);
+}

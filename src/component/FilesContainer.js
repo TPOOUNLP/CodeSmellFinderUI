@@ -10,16 +10,26 @@ class FilesContainer extends React.Component {
 
     renderItem(item, index) {
         return (
-            <FilesContainerItem item={item} index={index}/>
+            <FilesContainerItem item={item} index={index} />
         );
-      }
+    }
 
     render() {
         return (
             <div>
-                <ul className="list-group">
-                    <FlatList list={(!!this.props.files)? this.props.files : []} renderItem={this.renderItem.bind(this)} />
-                </ul>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col" style={{color: "white"}}>#</th>
+                            <th scope="col" style={{color: "white"}}>File</th>
+                            <th scope="col" style={{color: "white"}}>Run</th>
+                            <th scope="col" style={{color: "white"}}>Cs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <FlatList list={(!!this.props.files) ? this.props.files : []} renderItem={this.renderItem.bind(this)} />
+                    </tbody>
+                </table>
             </div>
         )
     }

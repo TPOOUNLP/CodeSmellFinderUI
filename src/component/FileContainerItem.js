@@ -4,9 +4,12 @@ class FileContainerItem extends React.Component {
    
     render() {
         return (
-            <li class="list-group-item" key={this.props.index}>
-              <b>{this.props.item.webkitRelativePath}</b>
-            </li>
+            <tr key={this.props.index}>
+              <th scope="row"  style={{color: "white"}}>{this.props.index}</th>
+              <td><p style={{fontFamily:'Roboto-Regular', color: "white"}}>{this.props.item.webkitRelativePath}</p></td>
+              <td></td>
+              <td></td>
+            </tr>
         )
     }
 

@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom'
 import SideBar from "./component/SideBar";
 import FileInput from "./component/FileInput";
 import FilesContainer from "./component/FilesContainer";
+import DetectionsTable from "./component/DetectionsTable";
 import Filter from "./component/Filter";
 import Spinner from "./component/Spinner";
 import AstService from "./services/AstService";
@@ -79,7 +80,8 @@ class App extends React.Component {
             content: null,
             files: [],
             showSpinner: false,
-            currentMessageButton: "Correr Dettectores"
+            currentMessageButton: "Correr Dettectores",
+            detectionResults: []
         }
     }
 
@@ -116,10 +118,18 @@ class App extends React.Component {
             AstService.postAstToPath("/detect", data).then((result) => {
                 console.log(result)
                 if (result ) {
+                    var jsonResult = JSON.parse(result);
+                    jsonResult = JSON.parse(jsonResult);
+                    /* jsonResult es un array de objetos así:
+                    name: "Repeated Methods"
+                    path: "/Users/nicolas.iraz....eatedMethods.cs"
+                    class: "ClassWithRepeatedMethods"
+                    detections: (2) ["MethodRepeated1 method has a repeated implementation", "MethodRepeated2 meth*/
                     this.setState({
                         showSpinner: false,
                         currentMessageButton:  this.button,
-                        content: result
+                        content: result,
+                        detectionResults: jsonResult
                     });
                 }
             });
@@ -173,6 +183,10 @@ class App extends React.Component {
                         <div class="sombra" style={_localStyles.filesContainer} >
                             <FilesContainer files={this.state.files} />
                         </div>
+                        
+                        <div class="sombra" style={_localStyles.filesContainer} >
+                            <DetectionsTable detections={this.state.detectionResults} />
+                        </div>
                     </div>
 
                     <div style={{ flex: 1 }}>
@@ -183,7 +197,7 @@ class App extends React.Component {
                         </div>
 
                         <div style={_localStyles.resultContainer}>
-                             <h6>Resultado total: {JSON.stringify(this.state.content)}</h6>
+                             <h6>Resultado total: {this.state.content}</h6>
                         </div>
                     </div>
                 </div>

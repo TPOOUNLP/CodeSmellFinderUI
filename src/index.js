@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom'
 import SideBar from "./component/SideBar";
 import FileInput from "./component/FileInput";
 import FilesContainer from "./component/FilesContainer";
-import DetectionsTable from "./component/DetectionsTable";
 import Filter from "./component/Filter";
 import Spinner from "./component/Spinner";
 import AstService from "./services/AstService";
@@ -77,11 +76,10 @@ class App extends React.Component {
         this.pathDirectory = null;
         this.filters = []
         this.state = {
-            content: null,
             files: [],
             showSpinner: false,
             currentMessageButton: "Correr Dettectores",
-            detectionResults: []
+            detectionResults: null
         }
     }
 
@@ -91,7 +89,8 @@ class App extends React.Component {
         if (this.pathDirectory == null) {
             alert("No se seleciono ningun Directorio para correr los filtros");
             success = false;
-        }
+       }
+       this.pathDirectory='/Users/agustincartasso/Desktop/test1/RepeatedMethod'
         if (this.filters.length == 0) {
             alert("No se seleciono ningun Filtro para correr");
             success = false;
@@ -113,23 +112,17 @@ class App extends React.Component {
                 directory: this.pathDirectory,
                 filters: this.filters
             }
-            await this.sleep(4000);
-            
+            await this.sleep(4000);        
             AstService.postAstToPath("/detect", data).then((result) => {
-                console.log(result)
-                if (result ) {
-                    var jsonResult = JSON.parse(result);
-                    jsonResult = JSON.parse(jsonResult);
-                    /* jsonResult es un array de objetos así:
-                    name: "Repeated Methods"
-                    path: "/Users/nicolas.iraz....eatedMethods.cs"
-                    class: "ClassWithRepeatedMethods"
-                    detections: (2) ["MethodRepeated1 method has a repeated implementation", "MethodRepeated2 meth*/
+                if (result) {
+                    let jsonData = result.reduce((data, item) => {
+                        data[item.path] = item;
+                        return data;
+                    }, {});
                     this.setState({
                         showSpinner: false,
                         currentMessageButton:  this.button,
-                        content: result,
-                        detectionResults: jsonResult
+                        detectionResults: jsonData
                     });
                 }
             });
@@ -181,11 +174,7 @@ class App extends React.Component {
                         </div>
 
                         <div class="sombra" style={_localStyles.filesContainer} >
-                            <FilesContainer files={this.state.files} />
-                        </div>
-                        
-                        <div class="sombra" style={_localStyles.filesContainer} >
-                            <DetectionsTable detections={this.state.detectionResults} />
+                            <FilesContainer files={this.state.files} detectionResults={this.state.detectionResults} />
                         </div>
                     </div>
 
@@ -196,9 +185,6 @@ class App extends React.Component {
                             {this.state.showSpinner && (<Spinner />)}
                         </div>
 
-                        <div style={_localStyles.resultContainer}>
-                             <h6>Resultado total: {this.state.content}</h6>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -211,8 +197,8 @@ class App extends React.Component {
      * @param {*} nextProps 
      */
     shouldComponentUpdate(nextState, nextProps) {
-        return (nextState.content !== this.state.content ||
-            nextState.files !== this.state.files ||
+        return (nextState.detectionResults !== this.state.detectionResults ||
+             nextState.files !== this.state.files ||
             this.state.showSpinner != nextState.showSpinner)
     }
 }

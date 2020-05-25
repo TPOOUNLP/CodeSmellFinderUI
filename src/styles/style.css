@@ -25,6 +25,9 @@
   color: "#000000" !important;
 }
   
+p {
+  word-wrap: break-word
+}
 .sombra {
   -webkit-box-shadow: -6px 14px 20px -1px rgba(207,72,74,0.75);
   -moz-box-shadow: -6px 14px 20px -1px rgba(207,72,74,0.75);

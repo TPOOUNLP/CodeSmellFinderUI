@@ -10,11 +10,11 @@ class FilesContainer extends React.Component {
 
     renderItem(item, index) {
         return (
-            <FilesContainerItem item={item} index={index} />
+            <FilesContainerItem item={item} index={index} detectionResults={this.props.detectionResults} />
         );
     }
 
-    render() {
+    render() {      
         return (
             <div>
                 <table class="table table-sm">
@@ -27,7 +27,7 @@ class FilesContainer extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <FlatList list={(!!this.props.files) ? this.props.files : []} renderItem={this.renderItem.bind(this)} />
+                        <FlatList list={(!!this.props.files) ? this.props.files : []} renderItem={this.renderItem.bind(this)} extraData={this.props.detectionResults}/>
                     </tbody>
                 </table>
             </div>

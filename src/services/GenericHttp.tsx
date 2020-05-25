@@ -53,7 +53,7 @@ class GenericService {
                 redirect: 'follow'
               })
             }
-        let data = (!!response)? JSON.stringify(await response.json()) : null
+        let data = (!!response)? await response.json() : null
         return data
         } catch (error) {
             console.log(error, _local_const.debug);

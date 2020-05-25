@@ -8,13 +8,15 @@ const _localStyles = {
         position: "relative"
     },
     popUp: {
-        backgroundColor: 'rgba(48,50,58,0.5)',
+        backgroundColor: 'rgba(48,50,58,0.9)',
         width: "40%",
-        borderRadius: 15
+        borderRadius: 5,
+        border: 0
     },
     button: {
-        borderRadius: 10,
-        backgroundColor: 'rgba(48,50,58)'
+        borderRadius: 5,
+        background: 'rgb(207,74,74)',
+        border: 0
     },
     icon: {
         width: 25,
@@ -48,8 +50,9 @@ class FileContainerItem extends React.Component {
                     (detection[this.props.item.path]) ?
                         <Popup trigger={
                             <button style={_localStyles.button}> Ver mas</button>}
-                            position="right center" arrow={false}
+                            position="right bottom" arrow={false}
                             contentStyle={_localStyles.popUp}
+                            overlayStyle={{backgroundColor: "rgba(0,0,0,0.2)"}}
                         >
                             {this.renderModal.bind(this)}
                         </Popup> : null

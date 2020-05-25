@@ -68,6 +68,7 @@ const _localStyles = {
     }
 }
 
+//TODO document class
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -87,6 +88,7 @@ class App extends React.Component {
     chechData() {
         let success = true
         if (this.pathDirectory == null) {
+            //TODO move literal strings to dictionary file
             alert("No se seleciono ningun Directorio para correr los filtros");
             success = false;
        }
@@ -101,7 +103,8 @@ class App extends React.Component {
     sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
       }
-
+    
+    //TODO move this to service
     async sendData() {
         if (this.chechData()) {
             this.setState({

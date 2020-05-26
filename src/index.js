@@ -92,7 +92,7 @@ class App extends React.Component {
             alert("No se seleciono ningun Directorio para correr los filtros");
             success = false;
        }
-       this.pathDirectory='/Users/agustincartasso/Desktop/test1/RepeatedMethod'
+       //this.pathDirectory='/Users/agustincartasso/Desktop/test1/RepeatedMethod'
         if (this.filters.length == 0) {
             alert("No se seleciono ningun Filtro para correr");
             success = false;

@@ -45,7 +45,9 @@ class GenericService {
         try {
             let response = null
             if (resource != null && params != null) {
-             response = await fetch(_local_const.path + resource + "?" + "directory=" + params.directory + "&filters=" + JSON.stringify(params.filters),{
+
+                let filters = params.filters.map((i:any)=> i.title).join(',');
+             response = await fetch(_local_const.path + resource + "?" + "directory=" + params.directory + "&filters=" + filters,{
                 method: _local_const.post,
                 headers: {
                     Accept: _local_const.headers.accept

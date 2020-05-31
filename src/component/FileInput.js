@@ -7,7 +7,8 @@ class FileInput extends React.Component {
         return (
             <div>
                 <span>
-                    <input type="file"
+                    <input id="fileControl" type="file"
+                        
                         name="myFile"
                         style={{borderRadius: 5, backgroundColor: 'rgb(157, 246, 253)'}}
                         webkitdirectory="true"
@@ -15,6 +16,13 @@ class FileInput extends React.Component {
                 </span>
             </div>
         )
+    }
+
+    componentWillUpdate(nexProps) {
+        if (nexProps.refresh) {
+            let input = document.getElementById("fileControl");
+            input.value = ''
+        }
     }
 }
 

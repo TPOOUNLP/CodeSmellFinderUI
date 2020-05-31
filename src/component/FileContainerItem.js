@@ -1,5 +1,6 @@
 import React from "react";
 import Popup from "reactjs-popup";
+import history from "./History";
 
 const _localStyles = {
     textContainer: {
@@ -23,16 +24,26 @@ const _localStyles = {
         height: 25
     }
 }
+
+ //<TextFileReader file={this.props.item}/>
 class FileContainerItem extends React.Component {
+
+    
 
     renderModal() {
         let detection = this.props.detectionResults[this.props.item.path];
         return (
+            <div>
             <div style={_localStyles.textContainer}>
                 <strong>Detector:</strong><p>{detection.name}</p>
                 <strong>Path:</strong><p>{detection.path}</p>
                 <strong>Clase:</strong><p>{detection.class}</p>
                 <strong>Detections</strong><p>{detection.detections}</p>
+               
+            </div>
+            <div>
+                <button  onClick={() => history.push({ pathname: '/detail' ,  state: { file: this.props.item }}) } class="btn btn-warning"> ver correciones en detalle</button>
+            </div>
             </div>
         )
     }

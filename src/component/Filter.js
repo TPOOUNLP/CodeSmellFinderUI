@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define */
+
 import "../styles/style.css"
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -10,7 +10,6 @@ export default class Filter extends React.Component {
   constructor(props) {
       super();
       this.getDetectors();
-      this.mock = true;
       this.state= {
         detectors: []
     }
@@ -58,5 +57,3 @@ export default class Filter extends React.Component {
   );
 }
 }
-
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

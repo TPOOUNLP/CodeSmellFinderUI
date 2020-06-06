@@ -1,5 +1,6 @@
 import React from 'react';
 import "../styles/style.css"
+import CodeSmellsService from "../services/CodeSmellsService";
 
 export default class TextFileReader extends React.Component {
     constructor() {
@@ -9,6 +10,7 @@ export default class TextFileReader extends React.Component {
     componentDidMount() {
         this.showFile()
     }
+    
     showFile = () => {
         if (this.props.file) {
             if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -16,8 +18,10 @@ export default class TextFileReader extends React.Component {
                 var file = this.props.file
                 var reader = new FileReader()
 
-                reader.onload = function (event) {
-                    preview.innerHTML = event.target.result;
+                reader.onload = (event) => {
+                    // TO-DO: ver librería o estilos css para mostrar coloreado el código
+                    let fileContent = CodeSmellsService.showDetectionsOnFile(event.target.result, this.props.detectionResults);
+                    preview.innerHTML = fileContent;
                 }
 
                 reader.readAsText(file);

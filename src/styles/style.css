@@ -33,3 +33,8 @@ p {
   -moz-box-shadow: -6px 14px 20px -1px rgba(207,72,74,0.75);
   box-shadow: -6px 14px 20px -1px rgba(207,72,74,0.75);
 }
+
+.highlighted {
+  font-weight: bold;
+  text-decoration: underline;
+}

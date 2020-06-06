@@ -48,7 +48,8 @@ export default class Detail extends React.Component {
                         <div class="sombra" style={_localStyles.pathContainer}><p style={{ color: "#ffffff" }}>PATH:{(this.props.location.state) ? this.props.location.state.file.path : null}</p>
                         </div>
                         <div style={_localStyles.file}>
-                            <TextFileReader file={(this.props.location.state) ? this.props.location.state.file : null}></TextFileReader>
+                            <TextFileReader file={(this.props.location.state) ? this.props.location.state.file : null}
+                                detectionResults={(this.props.location.state) ? this.props.location.state.detectionResults : null}></TextFileReader>
                         </div>
                     </div>
                 </div>

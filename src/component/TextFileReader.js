@@ -3,9 +3,6 @@ import "../styles/style.css"
 import CodeSmellsService from "../services/CodeSmellsService";
 
 export default class TextFileReader extends React.Component {
-    constructor() {
-        super();
-    };
 
     componentDidMount() {
         this.showFile()

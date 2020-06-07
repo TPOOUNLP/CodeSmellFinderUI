@@ -47,6 +47,7 @@ class GenericService {
             if (resource != null && params != null) {
 
                 let filters = params.filters.map((i:any)=> i.title).join(',');
+                // eslint-disable-next-line
              response = await fetch(_local_const.path + resource + "?" + "directory=" + params.directory + "&filters=" + filters,{
                 method: _local_const.post,
                 headers: {

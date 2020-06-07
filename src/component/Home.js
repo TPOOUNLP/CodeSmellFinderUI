@@ -102,7 +102,7 @@ export default class Home extends React.Component {
             success = false;
         }
         //this.pathDirectory='/Users/agustincartasso/Desktop/test1/RepeatedMethod'
-        if (this.filters.length == 0) {
+        if (this.filters.length === 0) {
             alert("No se seleciono ningun Filtro para correr");
             success = false;
         }
@@ -149,7 +149,7 @@ export default class Home extends React.Component {
     removeLastDirectoryPartOf(path, direcory) {
         let newPath = path.split('/')
         let last = newPath.pop()
-        while (last != direcory) {
+        while (last !== direcory) {
             last = newPath.pop();
         };
         newPath.push(last)
@@ -206,7 +206,7 @@ export default class Home extends React.Component {
     shouldComponentUpdate(nextState, nextProps) {
         return (nextState.detectionResults !== this.state.detectionResults ||
             nextState.files !== this.state.files ||
-            this.state.showSpinner != nextState.showSpinner)
+            this.state.showSpinner !== nextState.showSpinner)
     }
 }
 

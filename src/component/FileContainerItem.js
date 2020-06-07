@@ -55,8 +55,8 @@ class FileContainerItem extends React.Component {
                 <th scope="row" style={{ color: "white" }}>{this.props.index}</th>
                 <td><p style={{ fontFamily: 'Roboto-Regular', color: "white" }}>{this.props.item.webkitRelativePath}</p></td>
                 <td>{(!!detection) ?
-                    (detection[this.props.item.path]) ? <img style={_localStyles.icon} src={require('../assets/fallo.png')} /> :
-                        <img style={_localStyles.icon} src={require('../assets/ok.png')} /> : null}</td>
+                    (detection[this.props.item.path]) ? <img style={_localStyles.icon} alt="faild" src={require('../assets/fallo.png')} /> :
+                        <img style={_localStyles.icon} alt="passed" src={require('../assets/ok.png')} /> : null}</td>
                 <td>{(!!detection) ?
                     (detection[this.props.item.path]) ?
                         <Popup trigger={

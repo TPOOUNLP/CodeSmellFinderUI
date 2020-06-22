@@ -1,23 +1,14 @@
 
 class CodeSmellsService {
 
-    showDetectionsOnFile(fileContent: string, detectionResults: any) {
+    showDetectionsOnFile(fileContent: string, detectionResults: any, detectors: any) {
 
-        const messagesFormatInfo = this.getDetectionMessageFormat(detectionResults.name);
+        const messagesFormatInfo = detectors.find((detector: { name: any; }) => {
+            return detector.name === detectionResults.name;
+        });
         const referencesAndMessages = this.identificatesFileReferences(detectionResults.detections, messagesFormatInfo);
         
         return this.addInfoToFile(fileContent, referencesAndMessages);
-    }
-
-    getDetectionMessageFormat(detectionName: string) {
-
-        const detectionMessageFormats: any = {
-            'Identifier Too Long': { referenceType: 'identifier', referenceIndex: 2},
-            'Repeated Methods': { referenceType: 'method', referenceIndex: 0},
-            'Too Many Parameters in Method': { referenceType: 'method', referenceIndex: 1},
-            'Too Many Lines in Method': { referenceType: 'method', referenceIndex: 0},
-        };
-        return detectionMessageFormats[detectionName];
     }
 
     identificatesFileReferences(detections: string[], messagesFormatInfo: any) {
@@ -47,7 +38,7 @@ class CodeSmellsService {
     addTooltipAndFormat(text: string, tooltipText: string) {
 
         //TO-DO: cambiar esto por un tooltip mejor
-        return '<span class="highlighted" title="' + tooltipText + '">' + text + '</span>';
+        return '<span class="highlighted" title=\'' + tooltipText + '\'>' + text + '</span>';
     }
 
 }

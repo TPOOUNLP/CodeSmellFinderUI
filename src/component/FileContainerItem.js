@@ -42,7 +42,7 @@ class FileContainerItem extends React.Component {
                
             </div>
             <div>
-                <button  onClick={() => history.push({ pathname: '/detail' ,  state: { file: this.props.item, detectionResults: detection }}) } class="btn btn-warning"> ver correciones en detalle</button>
+                <button  onClick={() => history.push({ pathname: '/detail' ,  state: { file: this.props.item, detectionResults: detection, detectors: this.props.detectors }}) } class="btn btn-warning"> ver correciones en detalle</button>
             </div>
             </div>
         )

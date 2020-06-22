@@ -10,7 +10,7 @@ class FilesContainer extends React.Component {
 
     renderItem(item, index) {
         return (
-            <FilesContainerItem history={this.props.history} item={item} index={index} detectionResults={this.props.detectionResults} />
+            <FilesContainerItem history={this.props.history} item={item} index={index} detectionResults={this.props.detectionResults} detectors={this.props.detectors}/>
         );
     }
 

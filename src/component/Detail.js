@@ -42,6 +42,7 @@ export default class Detail extends React.Component {
                 <div class="bg-image"></div>
                 <div style={_localStyles.sideBar}>
                     <SideBar history={this.props.history} />
+                    <button onclick="window.history.back();">Volver</button>
                 </div>
                 <div style={_localStyles.mainContainer}>
                     <div style={{ flex: 1.5, paddingRight: "2%" }}>
@@ -49,7 +50,8 @@ export default class Detail extends React.Component {
                         </div>
                         <div style={_localStyles.file}>
                             <TextFileReader file={(this.props.location.state) ? this.props.location.state.file : null}
-                                detectionResults={(this.props.location.state) ? this.props.location.state.detectionResults : null}></TextFileReader>
+                                detectionResults={(this.props.location.state) ? this.props.location.state.detectionResults : null}
+                                detectors={(this.props.location.state) ? this.props.location.state.detectors : null}></TextFileReader>
                         </div>
                     </div>
                 </div>

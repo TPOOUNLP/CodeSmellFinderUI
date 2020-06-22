@@ -17,7 +17,7 @@ export default class TextFileReader extends React.Component {
 
                 reader.onload = (event) => {
                     // TO-DO: ver librería o estilos css para mostrar coloreado el código
-                    let fileContent = CodeSmellsService.showDetectionsOnFile(event.target.result, this.props.detectionResults);
+                    let fileContent = CodeSmellsService.showDetectionsOnFile(event.target.result, this.props.detectionResults, this.props.detectors);
                     preview.innerHTML = fileContent;
                 }
 

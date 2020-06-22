@@ -181,7 +181,7 @@ export default class Home extends React.Component {
                             <Filter onChangeFilter={(event, value, reason) => this.onChangeFilter(event, value, reason)} />
                         </div>
                         <div class="sombra" style={_localStyles.filesContainer} >
-                            <FilesContainer history={this.props.history} files={this.state.files} detectionResults={this.state.detectionResults} />
+                            <FilesContainer history={this.props.history} files={this.state.files} detectionResults={this.state.detectionResults} detectors={this.filters}/>
                         </div>
                     </div>
                     <div style={{ flex: 1 }}>

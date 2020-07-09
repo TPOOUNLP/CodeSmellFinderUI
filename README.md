@@ -16,7 +16,6 @@ Aplicacion de code smell hecha en electron con react
   ```
   * Descargar dependencias:  npm install (dentro de la carpeta raiz del proyecto) 
   ```
-  ```
 ### Correr aplicacion  ⌨️:
   ```
    npm start (dentro de la carpeta raiz del proyecto)

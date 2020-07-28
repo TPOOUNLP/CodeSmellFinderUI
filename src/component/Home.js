@@ -126,17 +126,13 @@ export default class Home extends React.Component {
             }
             await this.sleep(4000);
             AstService.postAstToPath("/detect", data).then((result) => {
-                if (result) {
-                    let jsonData = result.reduce((data, item) => {
-                        data[item.path] = item;
-                        return data;
-                    }, {});
-                    this.setState({
-                        showSpinner: false,
-                        currentMessageButton: this.button,
-                        detectionResults: jsonData
-                    });
-                }
+
+                let jsonData = AstService.processResults(result, this.pathDirectory);
+                this.setState({
+                    showSpinner: false,
+                    currentMessageButton: this.button,
+                    detectionResults: jsonData
+                });
             });
 
         }

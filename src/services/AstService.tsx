@@ -22,6 +22,23 @@ class AstService {
     return response
   }
 
+  public processResults( result:any , path: string) {
+    
+      if (!result) return false;
+
+      const jsonData: any = result.reduce((data: any, item:any) => {
+
+        item.relativePath = item.path.replace(path, "");
+        if ( !data[item.path] ) {
+          data[item.path] = [];
+        }
+        data[item.path].push(item);
+        return data;
+      }, {});
+      
+      return jsonData;
+  }
+
 }
 
 export default new AstService();

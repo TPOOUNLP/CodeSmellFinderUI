@@ -1,36 +1,49 @@
 
 class CodeSmellsService {
 
-    showDetectionsOnFile(fileContent: string, detectionResults: any, detectors: any) {
+    showDetectionsOnFile(fileContent: string, detectionResults: any[], detectors: any[]) {
 
-        const messagesFormatInfo = detectors.find((detector: { name: any; }) => {
-            return detector.name === detectionResults.name;
-        });
-        const referencesAndMessages = this.identificatesFileReferences(detectionResults.detections, messagesFormatInfo);
+        detectors = this.indexByName(detectors);
+        const referencesAndMessages: any = this.getReferencesAndMessages(detectionResults, detectors);
         
         return this.addInfoToFile(fileContent, referencesAndMessages);
     }
 
-    identificatesFileReferences(detections: string[], messagesFormatInfo: any) {
-        
-        if (messagesFormatInfo) {
+    indexByName(detectors:any) {
+    
+        return detectors.reduce((indexedDetectors: any, detector:any) => {
 
-            const referencesAndMessages: any = [];
-            detections.forEach((detection) => {
+            indexedDetectors[detector.name] = detector;
+            return indexedDetectors;
+        }, {});
+    }
+    
+    getReferencesAndMessages(detectionResults: any[], detectors: any[]){
+
+        const referencesAndMessages: any = [];
+        detectionResults.forEach( ( dResult: any ) => {
+            
+            dResult.detections.forEach((detection: string) => {
                 referencesAndMessages.push({
-                    reference: detection.split(' ')[messagesFormatInfo.referenceIndex],
-                    referenceType: messagesFormatInfo.referenceType,
+                    reference: detection.split(' ')[detectors[dResult.name].referenceIndex],
+                    referenceType: detectors[dResult.name].referenceType,
                     message: detection
                 });
             });
-            return referencesAndMessages;
-        }
+        });
+        return referencesAndMessages;
     }
 
     addInfoToFile(fileContent: string, referencesAndMessages: any[]) {
         
+        const usedKeywords: string[] = [];
+
         referencesAndMessages.forEach(data => {
-            fileContent = fileContent.replace(data.reference, this.addTooltipAndFormat(data.reference, data.message));
+            if (usedKeywords.indexOf(data.reference) < 0) { // no se puede reemplazar 2 veces la misma palabra
+
+                fileContent = fileContent.replace(data.reference, this.addTooltipAndFormat(data.reference, data.message));
+                usedKeywords.push(data.reference);
+            }
         })
         return fileContent;
     }

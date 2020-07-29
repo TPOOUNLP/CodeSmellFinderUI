@@ -4,7 +4,7 @@ import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import AstService from "../services/AstService";
-
+import { dictionaries } from "../Utils/Dictionary";
 export default class Filter extends React.Component {
 
   constructor(props) {
@@ -15,7 +15,6 @@ export default class Filter extends React.Component {
     }
   }
   
-
   getDetectors() {
     AstService.getAstToPath("/detectors").then((result) => {
         console.log(result)
@@ -24,8 +23,6 @@ export default class Filter extends React.Component {
         }
     });
   }
-
-  
 
   render() {
   return (
@@ -48,8 +45,8 @@ export default class Filter extends React.Component {
           <TextField
             {...params}
             variant="outlined"
-            label="Agregue detectores que desea aplicar al directorio"
-            placeholder="Detectores"
+            label={<strong style={{color: "black"}}>{dictionaries.spanish.ADD_DETECTORS}</strong>}
+            placeholder={dictionaries.spanish.DETECTORS}
           />
         )}
       />

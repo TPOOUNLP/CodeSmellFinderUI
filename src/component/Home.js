@@ -8,102 +8,45 @@ import FilesContainer from "./FilesContainer";
 import Filter from "./Filter";
 import Spinner from "./Spinner";
 import AstService from "../services/AstService";
-
-const _localStyles = {
-    sidebar: {
-        position: "fixed",
-        width: "10%",
-        height: "100%",
-        zIndex: 10
-    },
-    generalContainer: {
-        flex: 1,
-        position: "relative",
-        zIndex: 10,
-        marginLeft: 100,
-        display: "flex",
-        paddingTop: "2%"
-    },
-    fileInput: {
-        flex: 1,
-        zIndex: 2,
-        padding: "1%",
-        position: "relative",
-        background: 'rgb(207,74,74)',
-        alignContent: "center",
-        alignSelf: "center",
-        textAlign: "center"
-    },
-    pathContainer: {
-        borderRadius: 5,
-        backgroundColor: 'rgba(192,192,192,0.9)',
-        alignContent: "center",
-        padding: "1%",
-        borderWidth: 10,
-        borderColor: "#ffffff",
-        border: 1
-    },
-    filesContainer: {
-        borderRadius: 5,
-        alignContent: "center",
-        backgroundColor: 'rgba(192,192,192,0.9)',
-        padding: "1%",
-        marginTop: "7%"
-    },
-    filterContainer: {
-        alignSelf: "center",
-        marginBottom: "2%",
-        backgroundColor: 'rgba(0,0,0,0.3)',
-        marginTop: "5%",
-        borderRadius: 5
-    },
-    resultContainer: {
-        marginTop: "10%",
-        color: "#ffffff"
-    },
-    pathText: {
-        color: "white",
-        fontFamily: "Roboto-Regular"
-    }
-}
-
-//TODO document class
+import { homeStyle } from "../styles/generalStyles";
+import { dictionaries } from "../Utils/Dictionary";
+import { alertDictionary } from "../Utils/AlertDictionary";
+import { removeLastDirectoryPartOf } from "../Utils/GenearlFunction";
 export default class Home extends React.Component {
     constructor(props) {
         super(props)
-        this.button = "Correr Dettectores";
-        this.buttonLoading = "Corriendo detectores ...";
+        this.button = dictionaries.spanish.RUN_DETECTOR;
+        this.buttonLoading = dictionaries.spanish.RUNING_DETECTORS;
         this.pathDirectory = null;
         this.filters = []
         this.state = {
             files: [],
             showSpinner: false,
-            currentMessageButton: "Correr Dettectores",
+            currentMessageButton: dictionaries.spanish.RUN_DETECTOR,
             detectionResults: null,
             refresh: false
         }
     }
+
     clear() {
         this.setState({
             files: [],
             showSpinner: false,
-            currentMessageButton: "Correr Dettectores",
+            currentMessageButton: dictionaries.spanish.RUN_DETECTOR,
             detectionResults: null,
             refresh: true
         })
         this.filters = []
     }
-    //TODO move this to crresponding file
+
     chechData() {
         let success = true
         if (this.pathDirectory == null) {
-            //TODO move literal strings to dictionary file
-            alert("No se seleciono ningun Directorio para correr los filtros");
+            alert(alertDictionary.home.EMPTY_DIRECTORY);
             success = false;
         }
-        //this.pathDirectory='/Users/agustincartasso/Desktop/test1/RepeatedMethod'
         if (this.filters.length === 0) {
-            alert("No se seleciono ningun Filtro para correr");
+            alert(alertDictionary.home.EMPTY_FILTER);
             success = false;
         }
         return success;
@@ -113,7 +56,6 @@ export default class Home extends React.Component {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    //TODO move this to service
     async sendData() {
         if (this.chechData()) {
             this.setState({
@@ -142,51 +84,44 @@ export default class Home extends React.Component {
         this.setState({ files: event.target.files , refresh: false});
     }
 
-    removeLastDirectoryPartOf(path, direcory) {
-        let newPath = path.split('/')
-        let last = newPath.pop()
-        while (last !== direcory) {
-            last = newPath.pop();
-        };
-        newPath.push(last)
-        return (newPath.join('/'));
-    }
-
     onChangeFilter(event, value, reason) {
         this.filters = value;
     }
 
     render() {
         this.pathDirectory = (!!this.state.files && this.state.files !== [] && !!this.state.files[0]) ?
-            this.removeLastDirectoryPartOf(this.state.files[0].path, this.state.files[0].webkitRelativePath.split("/")[0]) : null
+            removeLastDirectoryPartOf(this.state.files[0].path, this.state.files[0].webkitRelativePath.split("/")[0]) : null
         return (
             <div>
                 <div class="bg-image"></div>
-                <div style={_localStyles.sidebar}>
+                <div style={homeStyle.sidebar}>
                     <SideBar />
                 </div>
-                <div style={_localStyles.fileInput}>
+                <div style={homeStyle.fileInput}>
                     <FileInput refresh={this.state.refresh} uploadFile={(event) => this.uploadFile(event)} />
                 </div>
-                <div style={_localStyles.generalContainer}>
+                <div style={homeStyle.generalContainer}>
                     <div style={{ flex: 1.5, paddingRight: "2%" }}>
-                        <div style={_localStyles.pathContainer} class="sombra" >
-                            <b style={_localStyles.pathText}>Directorio: {this.pathDirectory}</b>
+                        <div style={homeStyle.pathContainer} class="sombra" >
+                            <b style={homeStyle.pathText}>{dictionaries.spanish.DIRECTORY}{this.pathDirectory}</b>
                         </div>
-                        <div class="sombra" style={_localStyles.filterContainer} >
+                        <div class="sombra" style={homeStyle.filterContainer} >
                             <Filter onChangeFilter={(event, value, reason) => this.onChangeFilter(event, value, reason)} />
                         </div>
-                        <div class="sombra" style={_localStyles.filesContainer} >
+                        <div class="sombra" style={homeStyle.filesContainer} >
                             <FilesContainer history={this.props.history} files={this.state.files} detectionResults={this.state.detectionResults} detectors={this.filters}/>
                         </div>
                     </div>
-                    <div style={{ flex: 1 }}>
-                        <div style={{ display: "inline-block", flex: 1, width: "50%" }}>
+                    <div style={{ flex: 1 , display: "inline-block"}}>
+                        <div style={homeStyle.buttonFilter}>
                             <button onClick={this.sendData.bind(this)} class="btn btn-success">{this.state.currentMessageButton}</button>
-                            {this.state.showSpinner && (<Spinner />)}
+                            
                         </div>
-                        <div style={{ float: "right", alignSelf: "center", width: "50%", flex: 1 }}>
-                            <button onClick={this.clear.bind(this)} class="btn btn-success">Limpiar todo</button>
+                        <div style={homeStyle.buttonFilter}>
+                        {this.state.showSpinner && (<Spinner />)}
+                        </div>
+                        <div style={homeStyle.buttonClear}>
+                            <button onClick={this.clear.bind(this)} class="btn btn-success">{dictionaries.spanish.CLEAR_ALL}</button>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import React from 'react';
-import "../styles/style.css"
+import "../styles/style.css";
 import CodeSmellsService from "../services/CodeSmellsService";
+import { alertDictionary } from "../Utils/AlertDictionary";
 
 export default class TextFileReader extends React.Component {
 
@@ -24,7 +25,7 @@ export default class TextFileReader extends React.Component {
                 reader.readAsText(file);
 
             } else {
-                alert("Your browser is too old to support HTML5 File API");
+                alert(alertDictionary.browser.NOT_SUPPORT);
             }
         }
     }
@@ -32,7 +33,7 @@ export default class TextFileReader extends React.Component {
     render() {
         return (
             <div>
-                <pre class="sombra" style={{ backgroundColor: 'rgba(0,0,0,0.7)', borderRadius: 5, color: "white" }} id="show-text"></pre>
+                <pre class="sombra" style={{ backgroundColor: 'rgba(255,255,255,1)', borderRadius: 5, color: "black" }} id="show-text"></pre>
             </div>
         );
     }

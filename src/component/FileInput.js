@@ -2,15 +2,13 @@
 import React from "react";
  
 class FileInput extends React.Component {
-
     render() {
         return (
             <div>
                 <span>
-                    <input id="fileControl" type="file"
-                        
+                    <input id="fileControl" type="file"                
                         name="myFile"
-                        style={{borderRadius: 5, backgroundColor: 'rgb(157, 246, 253)'}}
+                        style={{borderRadius: 5, backgroundColor: 'rgb(255, 255, 255)'}}
                         webkitdirectory="true"
                         onChange={this.props.uploadFile} />
                 </span>

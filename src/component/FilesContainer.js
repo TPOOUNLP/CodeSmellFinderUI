@@ -1,6 +1,7 @@
 import React from "react";
 import FlatList from 'flatlist-react';
 import FilesContainerItem from "./FileContainerItem";
+import { dictionaries } from "../Utils/Dictionary";
 
 class FilesContainer extends React.Component {
     constructor(props) {
@@ -20,10 +21,10 @@ class FilesContainer extends React.Component {
                 <table class="table table-sm">
                     <thead>
                         <tr>
-                            <th scope="col" style={{color: "white"}}>#</th>
-                            <th scope="col" style={{color: "white"}}>File</th>
-                            <th scope="col" style={{color: "white"}}>Run</th>
-                            <th scope="col" style={{color: "white"}}>Cs</th>
+                            <th scope="col" style={{color: "black"}}>#</th>
+                            <th scope="col" style={{color: "black"}}>{dictionaries.spanish.FILE}</th>
+                            <th scope="col" style={{color: "black"}}>{dictionaries.spanish.RUN}</th>
+                            <th scope="col" style={{color: "black"}}>{dictionaries.spanish.CS}</th>
                         </tr>
                     </thead>
                     <tbody>

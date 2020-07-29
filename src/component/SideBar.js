@@ -8,7 +8,6 @@ class SideBar extends React.Component {
     /**
      * 
      */
-    // Refactot this use navitem external component in flatlist or similar
     render() {
         return (
             <SideNav

@@ -2,13 +2,13 @@
   
   * {
     box-sizing: border-box;
-    color:#ffff !important;
+    columns: #000000 !important;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
     font-size: 13px !important;
   }
   
   .bg-image {
-    background-image: url("../assets/fondo.png");
+    background-color: rgb(233, 235, 238);
     filter: blur(8px);
     -webkit-filter: blur(8px);
     height: 100%;
@@ -21,17 +21,19 @@
   }
 
 .listbox {
-  background-color: rgba(83,164,81,1);
+  background-color: rgba(255,255,255,1);
   color: "#000000" !important;
 }
-  
+.sidenav---sidenav---_2tBP{
+  background-color: rgb(45, 62, 63) !important;
+}  
 p {
   word-wrap: break-word
 }
 .sombra {
-  -webkit-box-shadow: -6px 14px 20px -1px rgba(207,72,74,0.75);
-  -moz-box-shadow: -6px 14px 20px -1px rgba(207,72,74,0.75);
-  box-shadow: -6px 14px 20px -1px rgba(207,72,74,0.75);
+  -webkit-box-shadow: -1px 1px 10px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 1px 10px -1px rgba(0,0,0,0.75);
+  box-shadow: -1px 1px 10px -1px rgba(0,0,0,0.75);
 }
 
 .highlighted {

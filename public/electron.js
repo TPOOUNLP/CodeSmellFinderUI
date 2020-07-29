@@ -10,6 +10,7 @@ let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow();
   mainWindow.loadURL('http://localhost:3000/index.js');
+  mainWindow.setFullScreen(true);
   mainWindow.on('closed', () => mainWindow = null);
 }
 

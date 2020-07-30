@@ -26,6 +26,8 @@ export const deatilComponentStyle = {
         backgroundColor: 'rgba(255,255,255,1)',
         alignContent: "center",
         borderWidth: 10,
+        paddingLeft: "2%",
+        paddingRight: "2%",
         borderColor: "#ffffff",
         border: 1
     }

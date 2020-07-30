@@ -33,7 +33,7 @@ export default class TextFileReader extends React.Component {
     render() {
         return (
             <div>
-                <pre class="sombra" style={{ backgroundColor: 'rgba(255,255,255,1)', borderRadius: 5, color: "black" }} id="show-text"></pre>
+                <pre class="sombra" style={{ backgroundColor: 'rgba(255,255,255,1)', borderRadius: 5, color: "black", padding: "2%" }} id="show-text"></pre>
             </div>
         );
     }

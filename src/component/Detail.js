@@ -10,8 +10,7 @@ export default class Detail extends React.Component {
             <div>
                 <div class="bg-image"></div>
                 <div style={deatilComponentStyle.sideBar}>
-                    <SideBar history={this.props.history} />
-                    <button onclick="window.history.back();">Volver</button>
+                    <SideBar history={this.props.history} back={true} />
                 </div>
                 <div style={deatilComponentStyle.mainContainer}>
                     <div style={{ flex: 1.5, paddingRight: "2%" }}>

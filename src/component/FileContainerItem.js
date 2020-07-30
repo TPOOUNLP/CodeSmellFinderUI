@@ -8,12 +8,12 @@ class FileContainerItem extends React.Component {
     renderModal() {
         let detections = this.props.detectionResults[this.props.item.path];
         return (
-            <div>
+            <div style={{padding: "2%"}}>
             {   detections.map((detectionResult, key) =>
             <div style={fileContainerItemStyle.textContainer}>
-                <p><strong>{dictionaries.spanish.DETECTION_CODE_SMELL}{detectionResult.name}"</strong></p>
+                <p><strong style={{color: "white"}}>{dictionaries.spanish.DETECTION_CODE_SMELL}"{detectionResult.name}"</strong></p>
                     {   detectionResult.detections.map((aDetectionMessage, key) =>
-                        <p>- {aDetectionMessage}</p>
+                        <p style={{color: "white"}}>- {aDetectionMessage}</p>
                         )
                     }
             </div>

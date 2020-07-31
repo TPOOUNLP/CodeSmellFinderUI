@@ -18,4 +18,5 @@ Aplicacion de code smell hecha en electron con react
   ```
 ### Correr aplicacion  ⌨️:
   ```
+   descargar proyecto (https://github.com/TPOOUNLP/CSharp_analysis) y levantar el servidor
    npm start (dentro de la carpeta raiz del proyecto)
